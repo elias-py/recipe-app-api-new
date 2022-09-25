@@ -20,7 +20,7 @@ def detail_url(tag_id):
     return reverse('recipe:tag-detail', args=[tag_id])
 
 
-def create_user(email: str = 'email@example.com', password: str = 'testpass123'):
+def create_user(email='email@example.com', password='testpass123'):
     """Create and return a new user."""
     return get_user_model().objects.create_user(email=email, password=password)
 
@@ -48,8 +48,8 @@ class PrivateTagsAPITests(TestCase):
 
     def test_retrieve_tags(self):
         """Test retreiving all tags."""
-        tag1 = models.Tag.objects.create(user=self.user, name='Tag1')
-        tag2 = models.Tag.objects.create(user=self.user, name='Tag2')
+        models.Tag.objects.create(user=self.user, name='Tag1')
+        models.Tag.objects.create(user=self.user, name='Tag2')
 
         res = self.client.get(TAGS_URL)
 

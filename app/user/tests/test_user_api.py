@@ -138,7 +138,11 @@ class PrivateUserAPITest(TestCase):
         """Test post is not allowed endpoint."""
         res = self.client.post(ME_URL)
 
-        self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED, {})
+        self.assertEqual(
+            res.status_code,
+            status.HTTP_405_METHOD_NOT_ALLOWED,
+            {}
+        )
 
     def test_update_user_profile(self):
         """Test updating the user profile for authenticated user."""

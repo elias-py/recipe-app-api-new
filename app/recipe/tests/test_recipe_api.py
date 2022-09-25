@@ -2,7 +2,6 @@
 Test for recipes APIS
 """
 from decimal import Decimal
-from recipe.tests.test_tags_api import detail_url
 
 from core.models import Recipe, Tag
 from django.test import TestCase
@@ -76,7 +75,10 @@ class PrivateRecipeAPITest(TestCase):
 
     def test_recipe_limited_to_user(self):
         """Test that the recipe return only if the user is owner."""
-        other_user = create_user(email='otheruser@example.com', password='otherpass123')
+        other_user = create_user(
+            email='otheruser@example.com',
+            password='otherpass123'
+        )
         create_recipe(user=self.user)
         create_recipe(user=other_user)
 
@@ -164,12 +166,15 @@ class PrivateRecipeAPITest(TestCase):
 
     def test_update_user_returns_error(self):
         """Test changing the recipe user results in an error."""
-        new_user = create_user(email='user1@example.com', password='TestPassword')
+        new_user = create_user(
+            email='user1@example.com',
+            password='TestPassword'
+        )
         recipe = create_recipe(user=self.user)
 
         payload = {'user': new_user.id}
         url = recipe_detail(recipe.id)
-        res = self.client.patch(url, payload)
+        self.client.patch(url, payload)
 
         recipe.refresh_from_db()
 
@@ -222,7 +227,7 @@ class PrivateRecipeAPITest(TestCase):
 
     def test_creating_a_recipe_with_existing_tags(self):
         """Testing creating a recipe with existing tags."""
-        tag1 = Tag.objects.create(user=self.user, name="Tag1")
+        Tag.objects.create(user=self.user, name="Tag1")
         payload = {
             "title": "My Recipe",
             "time_minutes": 30,
