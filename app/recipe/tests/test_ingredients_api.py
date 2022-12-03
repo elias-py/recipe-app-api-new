@@ -14,6 +14,7 @@ from recipe.serializers import IngredientSerializer
 
 INGREDIENTS_URL = reverse('recipe:ingredient-list')
 
+
 def detail_url(ingredient_id):
     """Create and return the ingredient url."""
     return reverse('recipe:ingredient-detail', args=[ingredient_id])

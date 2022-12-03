@@ -53,6 +53,7 @@ class BaseRecipeAttrViewSet(
         """Return tags that below to the authenticated user."""
         return self.queryset.filter(user=self.request.user).order_by('-name')
 
+
 class TagViewSet(BaseRecipeAttrViewSet):
     """View for manage tag APIs."""
     serializer_class = serializers.TagSerializer
