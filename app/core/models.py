@@ -20,6 +20,7 @@ def recipe_image_file_path(instance, filename):
 
     return os.path.join('uploads', 'recipe', filename)
 
+
 class UserManager(BaseUserManager):
     """Manager for users."""
 
